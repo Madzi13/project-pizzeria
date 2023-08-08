@@ -53,8 +53,10 @@ const select = {
   };
 
 class Product{
-  constructor(){
+  constructor(id, data){
     const thisProduct = this;
+    thisProduct.id = id;
+    thisProduct.data = data;
     console.log('new Product:', thisProduct);
   }
 }
@@ -63,9 +65,8 @@ class Product{
     initMenu: function(){
       const thisApp = this;
         console.log('thisApp.data:', thisApp.data);
-        
       for(let productData in thisApp.data.products){
-        new Product(productData, thisApp.data.products[productData]);
+        new Product(productData, thisApp.data.products[productData])
       }
       const testProduct = new Product();
       console.log('testProduct:', testProduct);
