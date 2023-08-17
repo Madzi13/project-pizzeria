@@ -273,7 +273,6 @@ const select = {
         for (let productData in thisApp.data.products) {
          new Product(productData, thisApp.data.products[productData]);
         }
-
       },
   
     init: function () {
