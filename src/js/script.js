@@ -555,6 +555,7 @@
           new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
         }
       },
+      
       initData: function(){
         const thisApp = this;
     
