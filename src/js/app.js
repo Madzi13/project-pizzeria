@@ -1,10 +1,10 @@
-    import {settings, select} from './settings.js';
+    import { settings, select } from './settings.js';
     import Product from './components/Product.js';
     import Cart from './components/Cart.js';
+    
     const app = {
       initMenu: function(){
        const thisApp = this;
-        // console.log('thisApp.data:', thisApp.data);
 
         for (let productData in thisApp.data.products) {
           new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
@@ -28,7 +28,7 @@
           /*execute initMenu method*/
           thisApp.initMenu();
         });
-        console.log('thisApp.data', JSON.stringify(thisApp.data));
+        //console.log('thisApp.data', JSON.stringify(thisApp.data));
       },
       
       initCart(){
@@ -46,15 +46,9 @@
 
       init: function(){
         const thisApp = this;
-        //console.log('*** App starting ***');
-        //console.log('thisApp:', thisApp);
-        //console.log('classNames:', classNames);
-        //console.log('settings:', settings);
-        //console.log('templates:', templates);
-  
-      thisApp.initData();
-      thisApp.initCart();
-    },
-  };
+        thisApp.initData();
+        thisApp.initCart();
+      },
+    };
    
-  app.init(); 
+  app.init();

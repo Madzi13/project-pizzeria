@@ -1,5 +1,4 @@
-
-import { select, settings } from "../settings.js";
+import { select, settings } from '../settings.js';
 
 class AmountWidget {
     constructor(element) {
@@ -42,7 +41,7 @@ class AmountWidget {
 
     announce(){
       const thisWidget = this;
-      const event = new CustomEvent('updated',{
+      const event = new CustomEvent('updated', {
         bubbles: true
       });
       thisWidget.element.dispatchEvent(event);

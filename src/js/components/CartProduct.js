@@ -1,5 +1,5 @@
-import AmountWidget from "./AmountWidget.js";
-import {select}  from "../settings.js"; 
+import AmountWidget from './AmountWidget.js';
+import {select}  from '../settings.js'; 
    
    
    class CartProduct{
