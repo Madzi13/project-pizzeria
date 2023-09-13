@@ -165,6 +165,19 @@ class Product {
         );
         thisProduct.element.dispatchEvent(event);
      }
+     prepareCartProduct(){
+      const thisProduct = this;
+      const productSummary = {
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value,
+        params: thisProduct.prepareCartProductParams(),
+      };
+      return productSummary;
+    }
+    
      prepareCartProductParams() {
         const thisProduct = this;
     
