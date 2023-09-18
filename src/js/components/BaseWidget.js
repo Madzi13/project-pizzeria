@@ -3,6 +3,7 @@ class Basewidget{
         const thisWidget = this;
         thisWidget.dom = {};
         thisWidget.dom.wrapper = wrapperElement;
+
         thisWidget.correctValue = initialValue;
     }
 
@@ -22,16 +23,15 @@ class Basewidget{
           thisWidget.announce();
         }
 
-        thisWidget.renderValue();
+          thisWidget.renderValue();
+        }
 
-      }
-
-      setValue(value){
-        const thisWidget = this;
-        thisWidget.value = value;
-      }
-
-      parseValue(value){
+        setValue(value){
+           const thisWidget = this;
+           
+           thisWidget.value = value;
+        }
+       parseValue(value){
         return parseInt(value);
       }
 

@@ -1,7 +1,7 @@
 import { select, settings } from '../settings.js';
 import BaseWidget from './BaseWidget.js';
-class AmountWidget extends BaseWidget {
-    constructor(element) {
+class AmountWidget extends BaseWidget{
+    constructor(element){
       super(element, settings.amountWidget.defaultValue);
 
       const thisWidget = this;
@@ -9,11 +9,11 @@ class AmountWidget extends BaseWidget {
       thisWidget.getElements(element);
 
       thisWidget.initActions();
-    }
     
-    // console.log('AmountWidget:', thisWidget);
-    // console.log('constructor arguments:', element);
-  
+    
+     //console.log('AmountWidget:', thisWidget);
+     // console.log('constructor arguments:', element);
+    }
 
     getElements(){
       const thisWidget = this;
