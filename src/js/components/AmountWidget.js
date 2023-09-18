@@ -1,6 +1,6 @@
 import { select, settings } from '../settings.js';
 import BaseWidget from './BaseWidget.js';
-class AmountWidget extends BaseWidget{
+class AmountWidget extends BaseWidget {
     constructor(element) {
       super(element, settings.amountWidget.defaultValue);
 
@@ -10,6 +10,7 @@ class AmountWidget extends BaseWidget{
 
       thisWidget.initActions();
     }
+    
     // console.log('AmountWidget:', thisWidget);
     // console.log('constructor arguments:', element);
   
@@ -38,7 +39,7 @@ class AmountWidget extends BaseWidget{
       initActions(){
       const thisWidget = this;
       thisWidget.dom.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.dom.input.value);
+        thisWidget.value(thisWidget.dom.input.value);
       });
       thisWidget.dom.linkDecrease.addEventListener('click', function(event){
         event.preventDefault();
@@ -50,9 +51,5 @@ class AmountWidget extends BaseWidget{
       });
     }
   }
-    //* addToCart(){
-    // const thisProduct = this;
-     // app.cart.add(thisProduct.prepareCartProduct);    
-    
-  
+ 
   export default AmountWidget;
