@@ -7,6 +7,7 @@ class Booking{
     constructor(element){
         const thisBooking = this;
         thisBooking.selectedTables = null;
+        thisBooking.starters = [];
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
@@ -205,12 +206,36 @@ class Booking{
           thisBooking.dom.floorPlan.addEventListener('click', function(event){
             thisBooking.initTables(event);
           });
+
+          thisBooking.dom.starters.addEventListener('click', function(event){
+
+            const clickedElement = event.target;
+      
+            const tagName = clickedElement.tagName;
+            const type = clickedElement.getAttribute('type');
+            const name = clickedElement.getAttribute('name');
+      
+            if(tagName == 'INPUT' && type == 'checkbox' && name == 'starter'){
+              console.log('click');
+              if(clickedElement.checked) {
+                thisBooking.starters.push(clickedElement.value);
+                console.log(clickedElement.value);
+              } else {
+                const starterNumber = thisBooking.starters.indexOf(clickedElement.value);
+                thisBooking.starters.splice(starterNumber, 1);
+              }
+            }
+            console.log(thisBooking.starters);
+          });
+
           thisBooking.dom.form.addEventListener('submit', function (event) {
             event.preventDefault();
+
             thisBooking.sendBooking();
             for(let table of thisBooking.dom.tables){
               table.classList.remove(classNames.booking.tableSelected);
             }
+            thisBooking.dom.form.reset();
           });
         }
       
@@ -268,17 +293,18 @@ class Booking{
               const url = settings.db.url + '/' + settings.db.bookings;
           
               // Creating const which sets parameteters which will be send as order
-              const payload = {
-                date: thisBooking.date,
-                hour: thisBooking.hourPicker.value,
-                table: parseInt(thisBooking.selectedTable),
-                duration: parseInt(thisBooking.dom.hours.value),
-                ppl: parseInt(thisBooking.dom.ppl.value),
-                phone: thisBooking.dom.phone.value,
-                address: thisBooking.dom.address.value,
-                starters: [],
-              };
+              const payload = {};
+              payload.date = thisBooking.date;
+              payload.hour = thisBooking.hourPicker.value;
+              payload.table = parseInt(thisBooking.selectedTable);
+              payload.duration = parseInt(thisBooking.dom.hours.value);
+              payload.ppl = parseInt(thisBooking.dom.ppl.value);
+              payload.phone = thisBooking.dom.phone.value;
+              payload.address = thisBooking.dom.address.value;
+              payload.starters = thisBooking.starters,
           
+              // Update the 'thisBooking.booked' object with new booking information
+
               thisBooking.makeBooked(
                 payload.date,
                 payload.hour,
@@ -298,6 +324,16 @@ class Booking{
                   return response.json();
                 }).then(function(parsedResponse){
                   console.log('parsedResponse: ', parsedResponse);
+
+                    // Reload table to see all reservation even with new added
+                   thisBooking.getData();
+
+        // Creating pop up message after sending booking order
+        const popup = document.getElementById(select.booking.popup);
+        popup.style.display = 'block';
+        setTimeout(function(){
+          popup.style.display = 'none';
+        }, 3000);
                 });
             }
 
