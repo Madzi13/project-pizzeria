@@ -11,6 +11,7 @@ class Booking{
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
+        thisBooking.initTables();
     }
 
     getData(){
@@ -38,14 +39,16 @@ class Booking{
         //console.log('getData params', params);
 
         const urls = {
-        bookings:           settings.db.url + '/' + settings.db.bookings
-                                           + '?' + params.bookings.join('&'),
-            eventsCurrent: settings.db.url + '/' + settings.db.event
-                                           + '?' + params.eventsCurrent.join('&'),
-            eventsRepeat:  settings.db.url + '/' + settings.db.event
-                                           + '?' + params.eventsRepeat.join('&'),
+          booking:        settings.db.url + '/' +
+                          settings.db.bookings + '?' + 
+                          params.booking.join('&'),
+          eventsCurrent: settings.db.url + '/' + 
+                         settings.db.events + '?' + 
+                         params.eventsCurrent.join('&'),
+          eventsRepeat:  settings.db.url + '/' + 
+                         settings.db.events + '?' + 
+                        params.eventsRepeat.join('&'),
         };
-        //console.log('getData urls', urls);
 
         Promise.all([
             fetch(urls.bookings),
@@ -56,6 +59,7 @@ class Booking{
                 const bookingsResponse = allResponses[0];
                 const eventsCurrentResponse = allResponses[1];
                 const eventsRepeatResponse = allResponses[2];
+                
                 return Promise.all([
                     bookingsResponse.json(),
                     eventsCurrentResponse.json(),
@@ -94,7 +98,6 @@ class Booking{
           }
         }
     
-        console.log('thisBooking.booked', thisBooking.booked);
         thisBooking.updateDOM();
       }
     
@@ -244,27 +247,23 @@ class Booking{
       
           const clickedElement = event.target;
       
-            // Check that clickedElement contains class 'booked'
            if(clickedElement.classList.contains(classNames.booking.table)){
-            // get Id of the table
            const tableId = clickedElement.getAttribute(settings.booking.tableIdAttribute);
-           // check if there any tables already selected at selectedTables and contains 'selected' class
-      
+                
             if(thisBooking.selectedTables != 0 && clickedElement.classList.contains(classNames.booking.tableSelected)){
               clickedElement.classList.remove(classNames.booking.tableBooked);
               thisBooking.selectedTables = 0;
             }
-            // if table is booked return alert
+            
             else if (clickedElement.classList.contains(classNames.booking.tableBooked)){
             alert('This table is already booked');
             } 
-            // Check if the table is already selected
+           
             else if (clickedElement.classList.contains(classNames.booking.tableSelected)){
-            // If the table is already selected, remove the "selected" class
-            clickedElement.classList.remove(classNames.booking.tableSelected);
-          }
+              clickedElement.classList.remove(classNames.booking.tableSelected);
+            }
 
-          else {
+            else {
               for(let table of thisBooking.dom.tables){
                 if(table.classList.contains(classNames.booking.tableSelected)){
 
@@ -277,22 +276,21 @@ class Booking{
             }
           }
         }
-             /* Method to reset selected table after update at date/hour/hours amount/people amount */
-              resetSelectedTables() {
-             // Select all tables with class 'selected'
+           
+            resetSelectedTables() {
+             
              const selectedTables = document.querySelectorAll(select.booking.selected);
               selectedTables.forEach(table => {
-               // Remove class 'selected' from every table'
-               table.classList.remove(classNames.booking.tableSelected);
-               });
+               
+                table.classList.remove(classNames.booking.tableSelected);
+              });
             }
+
             sendBooking(){
               const thisBooking = this;
           
-              // Connecting to app.json bookings {} object
               const url = settings.db.url + '/' + settings.db.bookings;
           
-              // Creating const which sets parameteters which will be send as order
               const payload = {};
               payload.date = thisBooking.date;
               payload.hour = thisBooking.hourPicker.value;
@@ -303,8 +301,6 @@ class Booking{
               payload.address = thisBooking.dom.address.value;
               payload.starters = thisBooking.starters,
           
-              // Update the 'thisBooking.booked' object with new booking information
-
               thisBooking.makeBooked(
                 payload.date,
                 payload.hour,
@@ -325,17 +321,14 @@ class Booking{
                 }).then(function(parsedResponse){
                   console.log('parsedResponse: ', parsedResponse);
 
-                    // Reload table to see all reservation even with new added
-                   thisBooking.getData();
+                  thisBooking.getData();
 
-        // Creating pop up message after sending booking order
-        const popup = document.getElementById(select.booking.popup);
-        popup.style.display = 'block';
-        setTimeout(function(){
-          popup.style.display = 'none';
-        }, 3000);
-                });
+                const popup = document.getElementById(select.booking.popup);
+                popup.style.display = 'block';
+                setTimeout(function(){
+                 popup.style.display = 'none';
+                }, 3000);
+              });
             }
-
 }
 export default Booking;
