@@ -6,8 +6,7 @@ import HourPicker from './HourPicker.js';
 class Booking{
     constructor(element){
         const thisBooking = this;
-        thisBooking.selectedTables = null;
-        thisBooking.starters = [];
+        
         thisBooking.render(element);
         thisBooking.initWidgets();
         thisBooking.getData();
