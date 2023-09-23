@@ -73,7 +73,7 @@
     <li>
       <div class="widget-amount"> <!-- widget-amount -->
         <a class="btn-quantity btn-quantity--lt" href="#less"><i class="fas fa-minus"></i></a>
-        <input class="amount" type="text" value="{{ amount }}">
+        <input class="amount" type="text" value="1">
         <a class="btn-quantity btn-quantity--lt" href="#more"><i class="fas fa-plus"></i></a>
       </div>
       <div class="cart__product">
@@ -175,11 +175,9 @@
 
     </article> <!-- .product -->
   </script>
+
   <script id="template-booking-widget" type="text/x-handlebars-template">
     <div class="booking-widget">
-      <div id="popup" class="popup">
-        <p>Booking submitted successfully!</p>
-      </div>
       <h2 class="page__title no-spacing">Book a table</h2>
       <form class="booking-form">
         <div class="time-picker">
@@ -217,7 +215,7 @@
               <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
             </div>
           </label>
-          <div class="order-starters"> <!-- option-row -->
+          <div> <!-- option-row -->
             <span class="booking-option-title">Starters</span>
             <div class="checkbox"> <!-- checkbox -->
               <label>
