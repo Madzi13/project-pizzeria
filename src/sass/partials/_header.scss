@@ -35,7 +35,7 @@
 
 }
 
-.main-nav {
+main-nav {
   position: absolute;
   @include flex(row, flex-start, flex-start);
   bottom: ($base-size * -8);

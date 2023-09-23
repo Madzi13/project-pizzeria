@@ -38,6 +38,7 @@ export const select = {
       wrapper: '.date-picker',
       input: `input[name="date"]`,
     },
+
       hourPicker: {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
@@ -49,18 +50,14 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
-    floorPlan: '.floor-plan',
-    selected: '.selected',
-    form: '.booking-form',
-    phone: '.order-confirmation [type="tel"]',
+    floor: '.floor-plan',
+    duration: '[name="hours"]',
+    people: '[name="people"]',
     submit: '.booking-form [type="submit"]',
-    address: '.order-confirmation [type="text"]',
-    ppl: '.people-amount [type="text"]',
-    hours: '.hours-amount [type="text"]',
-    starters: '.order-starters',
-    orderButton: '.order-confirmation [type="submit"]',
-    popup: 'popup',
-    },
+    address: '[name="address"]',
+    phone: '[name="phone"]',
+    starters: 'input[type="checkbox"]',
+},
 
   nav: {
     links: '.main-nav a',
@@ -102,7 +99,6 @@ export const classNames = {
       loading: 'loading',
       tableBooked: 'booked',
       tableSelected: 'selected',
-      table: 'table',
     },
     
     nav: {
@@ -114,7 +110,7 @@ export const classNames = {
     }
 };
   
-export  const settings = {
+export const settings = {
     amountWidget: {
       defaultValue: 1,
       defaultMin: 1,
@@ -142,8 +138,10 @@ export  const settings = {
       url: '//localhost:3131',
       products: 'products',
       orders: 'orders',
-      bookings: 'bookings',
-      event: 'events',
+      product: 'product',
+      order: 'order',
+      booking: 'booking',
+      event: 'event',
       dateStartParamKey: 'date_gte',
       dateEndParamKey: 'date_lte',
       notRepeatParam: 'repeat=false',
