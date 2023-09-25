@@ -58,10 +58,8 @@ getData(){
         ]);
     })
     .then(function([bookings, eventsCurrent, eventsRepeat]){
-        //console.log(bookings);
-                //console.log(eventsCurrent);
-                //console.log( eventsRepeat);
-      thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+   
+    thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
     });
 }
     
@@ -106,7 +104,6 @@ parseData(bookings, eventsCurrent, eventsRepeat){
             thisBooking.booked[date][hourBlock] = [];
       }
       thisBooking.booked[date][hourBlock].push(table);
-
   }
 }
 
@@ -153,7 +150,6 @@ parseData(bookings, eventsCurrent, eventsRepeat){
     thisBooking.dom.floor = element.querySelector(select.booking.floor);
     thisBooking.dom.duration = element.querySelector(select.booking.duration);
     thisBooking.dom.people = element.querySelector(select.booking.people);
-    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
     thisBooking.dom.phone = element.querySelector(select.booking.phone);
     thisBooking.dom.address = element.querySelector(select.booking.address);
     thisBooking.dom.submit = element.querySelector(select.booking.submit);
@@ -267,7 +263,7 @@ sendBooking() {
       );
       thisBooking.updateDOM();
     });
-}
+  }
 }
 
 export default Booking;

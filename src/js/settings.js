@@ -3,6 +3,7 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product', // CODE ADDED
     bookingWidget: '#template-booking-widget',
+    homeWidget: '#template-home-widget',
   },
     
   containerOf: {
@@ -10,6 +11,7 @@ export const select = {
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    home: '.home-wrapper',
   },
     
   all: {
@@ -57,6 +59,10 @@ export const select = {
     address: '[name="address"]',
     phone: '[name="phone"]',
     starters: 'input[type="checkbox"]',
+},
+home: {
+  homeHeader: '.navigation',
+  dataId: 'id-data',
    
 },
 
@@ -137,16 +143,16 @@ export const settings = {
 
     db: {
       url: '//localhost:3131',
-      products: 'products',
-      orders: 'orders',
-      product: 'product',
-      order: 'order',
-      booking: 'booking',
-      event: 'event',
-      dateStartParamKey: 'date_gte',
-      dateEndParamKey: 'date_lte',
-      notRepeatParam: 'repeat=false',
-      repeatParam: 'repeat_ne=false',
+        products: 'products',
+        orders: 'orders',
+        product: 'product',
+        order: 'order',
+        bookings: 'bookings',
+        events: 'events',
+        dateStartParamKey: 'date_gte',
+        dateEndParamKey: 'date_lte',
+        notRepeatParam: 'repeat=false',
+        repeatParam: 'repeat_ne=false',
     },
   };
  
@@ -156,4 +162,6 @@ export  const templates = {
     cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
    
     bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+
+    homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
 };
