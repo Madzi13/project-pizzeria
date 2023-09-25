@@ -57,6 +57,7 @@ export const select = {
     address: '[name="address"]',
     phone: '[name="phone"]',
     starters: 'input[type="checkbox"]',
+   
 },
 
   nav: {
