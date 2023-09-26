@@ -130,6 +130,7 @@ parseData(bookings, eventsCurrent, eventsRepeat){
         thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ) {
         table.classList.add(classNames.booking.tableBooked);
+        thisBooking.tableId = tableId;
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
@@ -158,6 +159,7 @@ parseData(bookings, eventsCurrent, eventsRepeat){
 
 initTables() {   
   const thisBooking = this;
+  thisBooking.tableId = null;
   thisBooking.dom.floor.addEventListener('click', function (event) {
     event.preventDefault();
     if (event.target.classList.contains('table')) {
@@ -171,6 +173,7 @@ initTables() {
             event.target.classList.remove(classNames.booking.tableSelected);
           } else {
             event.target.classList.add(classNames.booking.tableSelected);
+            thisBooking.tableId = event.target.getAtrribute('date-table');
           }
         }
       } else {
@@ -228,9 +231,9 @@ sendBooking() {
   const thisBooking = this;
   const url = settings.db.url + '/' + settings.db.bookings;
   const payload = {
-    date: thisBooking.date,
     hour: utils.numberToHour(thisBooking.hour),
     table: parseInt(thisBooking.tableId),
+    date: thisBooking.datePicker.correntValue,
     duration: thisBooking.hoursAmount.value,
     ppl: thisBooking.peopleAmount.value,
     starters: [],
