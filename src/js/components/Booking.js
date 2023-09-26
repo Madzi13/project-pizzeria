@@ -173,7 +173,7 @@ initTables() {
             event.target.classList.remove(classNames.booking.tableSelected);
           } else {
             event.target.classList.add(classNames.booking.tableSelected);
-            thisBooking.tableId = event.target.getAtrribute('date-table');
+            thisBooking.tableId = event.target.getAttribute('data-table');
           }
         }
       } else {
